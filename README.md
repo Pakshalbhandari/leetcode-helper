@@ -66,5 +66,6 @@ Paste or type a LeetCode problem description into the text area.
 
 Click the "Generate Solution Outline" button to see the solution outline.
 
-
+![alt text](screenshots/image.png)
+![alt text](screenshots/image-1.png)
 

@@ -2,8 +2,6 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS  # Import CORS
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import JsonOutputParser
-from langchain_core.exceptions import OutputParserException
 import os
 from dotenv import load_dotenv
 
@@ -48,18 +46,15 @@ chain = Chain()
 def generate_solution():
     # Allow the OPTIONS preflight request to pass through
     if request.method == 'OPTIONS':
-        print("HEREEE")
         return jsonify({'message': 'CORS preflight response'}), 200
 
     try:
         data = request.get_json()
-        print(f"Raw data: {request.data}")  # Log the raw request data
 
         problem_description = data.get("problem_description", "")
         if not problem_description:
             return jsonify({"error": "Problem description is required"}), 400
         solution_outline = chain.generate_solution_outline(problem_description)
-        print("Bye")
         return jsonify({"solutionOutline": solution_outline})
 
     except Exception as e:
