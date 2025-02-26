@@ -8,7 +8,8 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-
+import sys
+print(sys.path)
 app = Flask(__name__)
 
 # Enable CORS for all routes
